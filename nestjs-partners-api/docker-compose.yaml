@@ -6,8 +6,6 @@ services:
     volumes:
       - .:/home/node/app
       - ./node_modules:/home/node/app/node_modules
-    environment:
-      DATABASE_URL: mysql://root:root@db:3306/nest
     command: sh -c "npm install && npm run start:dev"
 
   db:
@@ -17,5 +15,6 @@ services:
       MYSQL_DATABASE: nest
     ports:
       - 3306:3306
-    # volumes:
+    volumes:
+      - ./.docker/mysql:/docker-entrypoint-initdb.d
     #   - ./.docker/dbdata:/var/lib/mysql
