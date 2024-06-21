@@ -12,5 +12,6 @@
   "files.eol": "auto",
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
-  }
+  },
+  "go.toolsEnvVars": {}
 }
