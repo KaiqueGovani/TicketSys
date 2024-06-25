@@ -7,7 +7,7 @@ export default function Navbar() {
       <div className="flex grow items-center justify-center">
         <Link href={"/"}>
           <Image
-            src="/icone.svg"
+            src="/nextjs/icone.svg"
             alt="Icone TicketSys"
             width={136}
             height={48}
@@ -17,7 +17,7 @@ export default function Navbar() {
       </div>
       <Link href={"/checkout"} className="min-h-6 min-w-6 grow-0 items-center">
         <Image
-          src="/cart-outline.svg"
+          src="/nextjs/cart-outline.svg"
           alt="Carrinho de compras"
           width={24}
           height={24}

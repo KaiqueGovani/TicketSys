@@ -8,21 +8,21 @@ import (
 
 // Errors
 var (
-	ErrInvalidTicketType = errors.New("invalid ticket type")
+	ErrInvalidTicketKind = errors.New("invalid ticket type")
 	ErrPriceMustBeGreater = errors.New("ticket price must be greater than zero")
 )
 
-// TicketType represents the type of a ticket.
-type TicketType string
+// TicketKind represents the type of a ticket.
+type TicketKind string
 
 const (
-	TicketTypeHalf TicketType = "half" // Half-price ticket
-	TicketTypeFull TicketType = "full" // Full-price ticket
+	TicketKindHalf TicketKind = "HALF" // Half-price ticket
+	TicketKindFull TicketKind = "FULL" // Full-price ticket
 )
 
-// IsValidTicketType checks if a ticket type is valid.
-func IsValidTicketType(ticketType TicketType) bool {
-	return ticketType == TicketTypeHalf || ticketType == TicketTypeFull
+// IsValidTicketKind checks if a ticket type is valid.
+func IsValidTicketKind(ticketKind TicketKind) bool {
+	return ticketKind == TicketKindHalf || ticketKind == TicketKindFull
 }
 
 // Ticket represents a ticket for an event.
@@ -30,21 +30,21 @@ type Ticket struct {
 	ID         string
 	EventID    string
 	Spot       *Spot
-	TicketType TicketType
+	TicketKind TicketKind
 	Price      float64
 }
 
 // NewTicket creates a new ticket with the given parameters.
-func NewTicket(event *Event, spot *Spot, ticketType TicketType) (*Ticket, error) {
-	if !IsValidTicketType(ticketType) {
-		return nil, ErrInvalidTicketType
+func NewTicket(event *Event, spot *Spot, ticketKind TicketKind) (*Ticket, error) {
+	if !IsValidTicketKind(ticketKind) {
+		return nil, ErrInvalidTicketKind
 	}
 
 	ticket := &Ticket{
 		ID:         uuid.New().String(),
 		EventID:    event.ID,
 		Spot:       spot,
-		TicketType: ticketType,
+		TicketKind: ticketKind,
 		Price:      event.Price,
 	}
 	ticket.CalculatePrice()
@@ -54,9 +54,9 @@ func NewTicket(event *Event, spot *Spot, ticketType TicketType) (*Ticket, error)
 	return ticket, nil
 }
 
-// CalculatePrice calculates the price based on the ticket type.
+// CalculatePrice calculates the price based on the ticket kind.
 func (t *Ticket) CalculatePrice() {
-	if t.TicketType == TicketTypeHalf {
+	if t.TicketKind == TicketKindHalf {
 		t.Price /= 2
 	}
 }

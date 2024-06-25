@@ -14,7 +14,6 @@ export function EventImage(props: EventImageProps) {
       height={180}
       priority
       className="rounded-2xl"
-      objectFit="cover"
     />
   );
 }

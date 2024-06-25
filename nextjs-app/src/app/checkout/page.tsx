@@ -5,12 +5,18 @@ import { EventModel } from "@/models";
 import { CheckoutForm } from "./CheckoutForm";
 
 export async function getEvent(eventId: string): Promise<EventModel> {
-  const response = await fetch(`http://localhost:8080/events/${eventId}`, {
-    cache: "no-store",
-    next: {
-      tags: [`events/${eventId}`],
-    },
-  });
+  const response = await fetch(
+    `${process.env.GOLANG_API_URL}/events/${eventId}`,
+    {
+      headers: {
+        apikey: process.env.GOLANG_API_TOKEN as string,
+      },
+      cache: "no-store",
+      next: {
+        tags: [`events/${eventId}`],
+      },
+    }
+  );
 
   return response.json();
 }
@@ -25,7 +31,7 @@ export default async function CheckoutPage() {
   const selectedSpots = JSON.parse(cookiesStore.get("spots")?.value || "[]");
   let totalPrice = selectedSpots.length * event.price;
   const ticketKind = cookiesStore.get("ticketKind")?.value;
-  if (ticketKind === "half") {
+  if (ticketKind === "HALF") {
     totalPrice = totalPrice / 2;
   }
   const formattedTotalPrice = new Intl.NumberFormat("pt-BR", {

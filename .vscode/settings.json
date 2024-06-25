@@ -3,7 +3,8 @@
   "material-icon-theme.folders.associations": {
     "entities": "class",
     "dto": "typescript",
-    "request": "public"
+    "request": "public",
+    "response": "private"
   },
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",

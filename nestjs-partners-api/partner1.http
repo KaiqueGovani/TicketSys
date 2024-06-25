@@ -55,6 +55,6 @@ X-Api-Token: 1234
 
 {
   "spots": ["{{ spotName }}"],
-  "ticket_kind": "full",
+  "ticket_kind": "FULL",
   "email": "test@test.com"
 }

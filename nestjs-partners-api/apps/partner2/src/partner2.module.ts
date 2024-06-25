@@ -9,6 +9,7 @@ import { AuthModule } from '@app/core/auth/auth.module';
   imports: [
     ConfigModule.forRoot({
       envFilePath: '.env.partner2',
+      isGlobal: true,
     }),
     PrismaModule,
     AuthModule,

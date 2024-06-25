@@ -13,7 +13,7 @@ func TestPartner1_MakeReservation_Success(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		assert.Equal(t, "/api1/events/1/reserve", r.URL.Path)
 		w.WriteHeader(http.StatusCreated) // Mudança aqui para http.StatusCreated
-		w.Write([]byte(`[{"id": "1", "email": "user1@test.com", "spot": "A1", "ticket_kind": "full", "status": "reserved", "event_id": "1"}]`))
+		w.Write([]byte(`[{"id": "1", "email": "user1@test.com", "spot": "A1", "ticket_kind": "FULL", "status": "RESERVED", "event_id": "1"}]`))
 	}))
 	defer server.Close()
 
@@ -21,7 +21,7 @@ func TestPartner1_MakeReservation_Success(t *testing.T) {
 	req := &ReservationRequest{
 		EventID:    "1",
 		Spots:      []string{"A1"},
-		TicketType: "full",
+		TicketKind: "FULL",
 		Email:      "user1@test.com",
 	}
 
@@ -45,7 +45,7 @@ func TestPartner1_MakeReservation_Failure(t *testing.T) {
 	req := &ReservationRequest{
 		EventID:    "1",
 		Spots:      []string{"A1"},
-		TicketType: "full",
+		TicketKind: "FULL",
 		Email:      "user1@test.com",
 	}
 
